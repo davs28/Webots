@@ -1,0 +1,562 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+      coulombFriction [
+        2
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.014623023509682743 -0.9041191524929201 0.42703012221495495 6.207643337463468
+  position -1.863108567687689 0.4256070568911229 0.3671516747640692
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+  floorTileSize 0.25 0.25
+}
+Robot {
+  translation 0 0 0.04
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+      }
+      device [
+        LinearMotor {
+          name "LinearMotor"
+          maxPosition 0.14
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.06 0.04
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.020000000983542213
+              anchor 0 -0.05 0
+            }
+            device [
+              RotationalMotor {
+                name "RotationalMotor"
+                minPosition -1.57
+                maxPosition 1.57
+              }
+            ]
+            endPoint Solid {
+              translation -6.449509999999588e-06 -0.060053189241594765 -0.0002010798139693702
+              rotation 0.9999999999999999 7.650568711079522e-09 7.778095146114805e-09 1.5700000000000038
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry DEF ARM Cylinder {
+                    height 0.03
+                    radius 0.01
+                  }
+                }
+              ]
+              name "solid(6)"
+              boundingObject USE ARM
+              physics Physics {
+              }
+            }
+          }
+          DEF Link2 Shape {
+            appearance PBRAppearance {
+            }
+            geometry Box {
+              size 0.02 0.1 0.02
+            }
+          }
+        ]
+        name "solid(5)"
+        boundingObject USE Link2
+        physics Physics {
+        }
+      }
+    }
+    Solid {
+      translation 0 0 0.09
+      children [
+        DEF Link Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.02 0.02 0.2
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE Link
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation 0.1 0.0325072 0
+      rotation 0 0 1 0.3
+      children [
+        DEF DISTANCE_SENSOR Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE DISTANCE_SENSOR
+    }
+    DistanceSensor {
+      translation 0.1 -0.0325072 0
+      rotation 0 0 1 -0.3
+      children [
+        DEF DISTANCE_SENSOR Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE DISTANCE_SENSOR
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.1 0.05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint DEF WHEEL1 Solid {
+        translation 0.05 0.06 0
+        rotation 1 2.374823827808663e-10 -2.3748317659949e-10 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics DEF WHEEL_PH Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint DEF WHEEL2 Solid {
+        translation 0.05 -0.06 0
+        rotation 1 -2.4140029090727994e-10 2.4140117762168896e-10 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint DEF WHEEL3 Solid {
+        translation -0.05 0.06 0
+        rotation 1 2.37491716734055e-10 -2.3749258909144305e-10 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint DEF WHEEL4 Solid {
+        translation -0.05 -0.06 0
+        rotation 1 -2.4146000517670324e-10 2.414609706149342e-10 1.5707999999999998
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+  }
+  controller ""
+}
+Robot {
+  translation -0.64 0.19 0.025
+  children [
+    DEF JOINT1 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 0 1
+      }
+      device [
+        PositionSensor {
+          name "ps1"
+        }
+        RotationalMotor {
+          name "motor1"
+        }
+      ]
+      endPoint Solid {
+        translation 1.9024868533261033e-10 3.48857868413418e-08 0.029991597149342127
+        rotation -0.7659590903759264 -8.03398448194619e-05 -0.6428893103917602 3.8281776245430556e-07
+        children [
+          DEF JOINT2 HingeJoint {
+            jointParameters HingeJointParameters {
+            }
+            device [
+              PositionSensor {
+                name "ps2"
+              }
+              RotationalMotor {
+                name "motor2"
+                minPosition -0.7854
+                maxPosition 0.7854
+              }
+            ]
+            endPoint Solid {
+              translation 0 0 0.10500000000000008
+              rotation 1 0 0 0
+              children [
+                DEF JOINT3 HingeJoint {
+                  jointParameters HingeJointParameters {
+                    anchor 0 0 0.08
+                  }
+                  device [
+                    PositionSensor {
+                      name "ps3"
+                    }
+                    RotationalMotor {
+                      name "motor3"
+                      minPosition -0.7854
+                      maxPosition 0.7854
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0 0.004999999999999996 0.08
+                    rotation -1 0 0 1.5707996938995747
+                    children [
+                      DEF JOINT4 HingeJoint {
+                        jointParameters HingeJointParameters {
+                          axis 0 0 1
+                        }
+                        device [
+                          PositionSensor {
+                            name "ps4"
+                          }
+                          RotationalMotor {
+                            name "motor4"
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 1.9094728503837154e-13 2.7674056338745073e-06 0.07500000823159762
+                          rotation -0.7615773198052846 -1.0633129025145059e-07 -0.6480740590072925 3.576278686523442e-07
+                          children [
+                            DEF JOINT5 HingeJoint {
+                              jointParameters HingeJointParameters {
+                                anchor 0 0 0.05
+                              }
+                              device [
+                                PositionSensor {
+                                  name "ps5"
+                                }
+                                RotationalMotor {
+                                  name "motor5"
+                                  minPosition -0.7854
+                                  maxPosition 0.7854
+                                }
+                              ]
+                              endPoint Solid {
+                                translation 0 5.421010862427522e-20 0.07500000000000001
+                                rotation 1 0 0 0
+                                children [
+                                  DEF JOINT6 HingeJoint {
+                                    jointParameters HingeJointParameters {
+                                      axis 0 0 1
+                                    }
+                                    device [
+                                      PositionSensor {
+                                        name "ps6"
+                                      }
+                                      RotationalMotor {
+                                        name "motor6"
+                                      }
+                                    ]
+                                    endPoint Solid {
+                                      translation 0 0 0.04
+                                      children [
+                                        DistanceSensor {
+                                          translation 0 -0.01 0
+                                          rotation 0.5773502691896258 -0.5773502691896258 0.5773502691896258 2.09439
+                                        }
+                                        Camera {
+                                          translation -2.36851e-08 -0.01 4.10057e-08
+                                          rotation 0.577349935856137 -0.577349935856137 0.5773509358560258 2.09439
+                                          recognitionColors [
+                                            0 0 1
+                                          ]
+                                          width 360
+                                          height 360
+                                          recognition Recognition {
+                                          }
+                                        }
+                                        SliderJoint {
+                                          jointParameters JointParameters {
+                                            axis 1 0 0
+                                          }
+                                          device [
+                                            PositionSensor {
+                                              name "ps7"
+                                            }
+                                            LinearMotor {
+                                              name "gripper1"
+                                              maxPosition 0.005
+                                            }
+                                          ]
+                                          endPoint Solid {
+                                            translation -0.010000000000004077 0 0.02
+                                            children [
+                                              DEF ARM1 Shape {
+                                                appearance PBRAppearance {
+                                                }
+                                                geometry Box {
+                                                  size 0.005 0.01 0.02
+                                                }
+                                              }
+                                            ]
+                                            name "solid(1)"
+                                            boundingObject USE ARM1
+                                            physics Physics {
+                                            }
+                                          }
+                                        }
+                                        SliderJoint {
+                                          jointParameters JointParameters {
+                                            axis -1 0 0
+                                          }
+                                          device [
+                                            PositionSensor {
+                                              name "ps8"
+                                            }
+                                            LinearMotor {
+                                              name "gripper2"
+                                              maxPosition 0.005
+                                            }
+                                          ]
+                                          endPoint Solid {
+                                            translation 0.009999999999996368 0 0.02
+                                            children [
+                                              DEF ARM1 Shape {
+                                                appearance PBRAppearance {
+                                                }
+                                                geometry Box {
+                                                  size 0.005 0.01 0.02
+                                                }
+                                              }
+                                            ]
+                                            boundingObject USE ARM1
+                                            physics Physics {
+                                            }
+                                          }
+                                        }
+                                        DEF LINK6 Shape {
+                                          appearance PBRAppearance {
+                                            baseColor 0 0 0
+                                          }
+                                          geometry Box {
+                                            size 0.02 0.02 0.03
+                                          }
+                                        }
+                                      ]
+                                      boundingObject USE LINK6
+                                      physics Physics {
+                                      }
+                                    }
+                                  }
+                                  DEF LINK5 Shape {
+                                    appearance PBRAppearance {
+                                    }
+                                    geometry Cylinder {
+                                      height 0.05
+                                      radius 0.015
+                                    }
+                                  }
+                                ]
+                                boundingObject USE LINK5
+                                physics Physics {
+                                }
+                              }
+                            }
+                            DEF LINK4 Shape {
+                              appearance PBRAppearance {
+                              }
+                              geometry Cylinder {
+                                height 0.1
+                                radius 0.02
+                              }
+                            }
+                          ]
+                          boundingObject USE LINK4
+                          physics Physics {
+                          }
+                        }
+                      }
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0 0 0
+                        }
+                        geometry DEF LINK3 Cylinder {
+                          height 0.05
+                          radius 0.02
+                        }
+                      }
+                    ]
+                    boundingObject USE LINK3
+                    physics Physics {
+                    }
+                  }
+                }
+                DEF LINK2 Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry Cylinder {
+                    height 0.2
+                    radius 0.02
+                  }
+                }
+              ]
+              name "solid(1)"
+              boundingObject USE LINK2
+              physics Physics {
+              }
+            }
+          }
+          DEF LINK1 Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.01
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE LINK1
+        physics Physics {
+        }
+      }
+    }
+    DEF BASE Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.1 0.1 0.05
+      }
+    }
+  ]
+  name "Arm_Robot"
+  boundingObject USE BASE
+  physics Physics {
+    mass 2
+  }
+  controller "arm_robot_movement"
+}
+Solid {
+  translation -0.59 0.48 0.05
+  children [
+    DEF BOX Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+      }
+      geometry Box {
+        size 0.1 0.1 0.1
+      }
+    }
+  ]
+  recognitionColors [
+    0 0 1
+  ]
+}

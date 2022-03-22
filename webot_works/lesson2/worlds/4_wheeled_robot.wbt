@@ -1,0 +1,268 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+      coulombFriction [
+        2
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.07619194747299199 -0.8996391970140751 -0.42993499780332245 5.894178447080787
+  position -0.4666999666287756 -0.12846357620001048 0.20244311316209715
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+  floorTileSize 0.25 0.25
+}
+Robot {
+  translation 0 0 0.04
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+      }
+      device [
+        LinearMotor {
+          name "LinearMotor"
+          maxPosition 0.14
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.06 0.04
+        children [
+          HingeJoint {
+            jointParameters HingeJointParameters {
+              position 0.020000000983542213
+              anchor 0 -0.5 0
+            }
+            device [
+              RotationalMotor {
+                name "RotationalMotor"
+                minPosition -1.57
+                maxPosition 1.57
+              }
+            ]
+            endPoint Solid {
+              translation -6.44951e-06 -0.0601432 0
+              rotation 1 -4.677695813011953e-13 4.770393728160872e-13 1.5699999999999996
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                  }
+                  geometry DEF ARM Cylinder {
+                    height 0.03
+                    radius 0.01
+                  }
+                }
+              ]
+              name "solid(6)"
+              boundingObject USE ARM
+              physics Physics {
+              }
+            }
+          }
+          DEF Link2 Shape {
+            appearance PBRAppearance {
+            }
+            geometry Box {
+              size 0.02 0.1 0.02
+            }
+          }
+        ]
+        name "solid(5)"
+        boundingObject USE Link2
+        physics Physics {
+        }
+      }
+    }
+    Solid {
+      translation 0 0 0.09
+      children [
+        DEF Link Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.02 0.02 0.2
+          }
+        }
+      ]
+      name "solid(4)"
+      boundingObject USE Link
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation 0.1 0.0325072 0
+      rotation 0 0 1 0.3
+      children [
+        DEF DISTANCE_SENSOR Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_left"
+      boundingObject USE DISTANCE_SENSOR
+    }
+    DistanceSensor {
+      translation 0.1 -0.0325072 0
+      rotation 0 0 1 -0.3
+      children [
+        DEF DISTANCE_SENSOR Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.01 0.01
+          }
+        }
+      ]
+      name "ds_right"
+      boundingObject USE DISTANCE_SENSOR
+    }
+    DEF BODY Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.1 0.05
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel1"
+        }
+      ]
+      endPoint DEF WHEEL1 Solid {
+        translation 0.05 0.06 0
+        rotation 1 0 0 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE WHEEL
+        physics DEF WHEEL_PH Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel2"
+        }
+      ]
+      endPoint DEF WHEEL2 Solid {
+        translation 0.05 -0.06 0
+        rotation 1 0 0 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel3"
+        }
+      ]
+      endPoint DEF WHEEL3 Solid {
+        translation -0.05 0.06 0
+        rotation 1 0 0 1.5708
+        children [
+          DEF WHEEL Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.05 -0.06 0
+      }
+      device [
+        RotationalMotor {
+          name "wheel4"
+        }
+      ]
+      endPoint DEF WHEEL4 Solid {
+        translation -0.05 -0.06 0
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 1 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE WHEEL
+        physics USE WHEEL_PH
+      }
+    }
+  ]
+  boundingObject USE BODY
+  physics Physics {
+  }
+  controller "four_wheeled_collision_avoidance"
+}

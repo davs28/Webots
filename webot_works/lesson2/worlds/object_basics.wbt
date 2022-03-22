@@ -1,0 +1,137 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+      coulombFriction [
+        2
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation -0.3267685224946126 -0.7045683833956436 0.629925174783432 5.013896226675734
+  position -0.9749876801509407 1.0999071567271825 2.2918623031858383
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 2 2
+  floorTileSize 0.25 0.25
+}
+Solid {
+  translation 0 0 0.14
+  children [
+    DEF box Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE box
+  physics Physics {
+    mass 2
+  }
+}
+Solid {
+  translation -0.38 -0.45 0.14
+  children [
+    DEF box Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE box
+  physics Physics {
+    mass 2
+  }
+}
+Solid {
+  translation 0.17 0.35 0.14
+  children [
+    DEF box Shape {
+      appearance PBRAppearance {
+        baseColor 0.666667 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.2 0.2 0.2
+      }
+    }
+  ]
+  boundingObject USE box
+  physics Physics {
+    mass 1
+  }
+}
+E-puck {
+  translation -0.53 0.32 0
+  rotation 0 0 1 -0.785395307179586
+  controller "EPuckCollisionAvoidance"
+}
+Solid {
+  translation 0.76 0 0.22
+  rotation 0 1 0 -1.5707953071795862
+  children [
+    DEF DB_Group Group {
+      children [
+        Transform {
+          translation 0 0 -0.09
+          children [
+            DEF Bell Shape {
+              appearance PBRAppearance {
+              }
+              geometry Sphere {
+                radius 0.05
+                subdivision 3
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0 0 0.07
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.05
+                radius 0.05
+              }
+            }
+          ]
+        }
+        Shape {
+          appearance PBRAppearance {
+          }
+          geometry Cylinder {
+            height 0.1
+            radius 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(3)"
+  contactMaterial "dumbbell"
+  boundingObject USE DB_Group
+  physics Physics {
+    mass 2
+  }
+}
